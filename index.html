@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +39,11 @@
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Prevent potential text overlap issues on specific browsers */
+        h1, h2, h3 {
+            text-rendering: optimizeLegibility;
         }
     </style>
 <script type="importmap">

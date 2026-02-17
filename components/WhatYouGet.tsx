@@ -3,28 +3,28 @@ import React from 'react';
 const WhatYouGet: React.FC = () => {
   const items = [
     { 
-      title: "Diagnostic Matrix", 
-      desc: "A 12-point weighted assessment system used by high-tier consultants.", 
+      title: "The Core Scorecard", 
+      desc: "A 6-dimension weighted assessment used to audit your structural necessity.", 
       size: "md:col-span-2",
       tag: "CORE TOOL"
     },
     { 
-      title: "Case Studies", 
-      desc: "Real-world examples of roles that survived vs. those that didn't.", 
+      title: "Interpretive Logic", 
+      desc: "Detailed breakdowns of each scoring range and what they mean for your career path.", 
       size: "md:col-span-1",
       tag: "ANALYSIS"
     },
     { 
-      title: "Scoring Guide", 
-      desc: "Instructions on how to calculate and interpret your structural score.", 
+      title: "Tactical Positioning", 
+      desc: "Practical steps to shift from 'Tasks' to 'Outcomes' in the eyes of decision-makers.", 
       size: "md:col-span-1",
       tag: "GUIDE"
     },
     { 
-      title: "Red Flag Audit", 
-      desc: "Identify the top 5 behaviors that signal your role is at risk.", 
+      title: "Resilience Checklist", 
+      desc: "Specific structural changes to implement over 60-90 days to reduce replaceability.", 
       size: "md:col-span-2",
-      tag: "CHECKLIST"
+      tag: "STRATEGY"
     },
   ];
 
@@ -62,17 +62,17 @@ const WhatYouGet: React.FC = () => {
               </div>
               <div>
                 <p className="text-2xl font-serif font-bold text-slate-950">Instant Digital Delivery</p>
-                <p className="text-slate-500 font-medium">32-Page Actionable PDF Manual</p>
+                <p className="text-slate-500 font-medium text-sm md:text-base">Full 4-Page Structural Assessment Manual (PDF)</p>
               </div>
            </div>
            <div className="flex items-center gap-4">
               <div className="text-right hidden sm:block">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Updated</p>
-                <p className="text-sm font-bold text-slate-950">January 2025</p>
+                <p className="text-sm font-bold text-slate-950">February 2026</p>
               </div>
               <div className="w-[1px] h-10 bg-slate-200 hidden sm:block"></div>
               <span className="px-6 py-3 bg-red-600 text-white rounded-full font-bold text-sm shadow-lg shadow-red-200">
-                DRM-FREE
+                LATEST EDITION
               </span>
            </div>
         </div>

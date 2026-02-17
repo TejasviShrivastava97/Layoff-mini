@@ -22,11 +22,12 @@ const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
 
 const FAQ: React.FC = () => {
   const faqs = [
+    { q: "How long does the assessment take?", a: "Most professionals complete the full 6-dimension diagnostic in 15-20 minutes. The value comes from the objective analysis of your current role dynamics." },
+    { q: "Is my payment and data secure?", a: "Yes. All payments are processed through Stripe's high-security infrastructure. We do not store your credit card details. The scorecard is a digital PDF that you download and complete privately. Your results are for your eyes only." },
+    { q: "What is the 14-day guarantee?", a: "If you feel the Replaceability Scorecard didn't provide meaningful professional insight, simply email us within 14 days and we'll issue a full refund. No questions asked." },
     { q: "Is this specific to tech roles?", a: "No. While the examples use corporate terminology, the structural logic applies to any hierarchical organization with mid-to-senior management layers." },
-    { q: "How is it delivered?", a: "Immediately after your $7 payment through Stripe, you will be redirected to a download page, and a link will be sent to your email address." },
-    { q: "Is it a recurring subscription?", a: "Absolutely not. One payment, lifetime access to the PDF and any future version updates." },
-    { q: "What if I'm not satisfied?", a: "Due to the nature of digital goods, we don't offer standard refunds, but if you truly feel the $7 wasn't worth the insight, email us and we'll make it right." },
-    { q: "Is this HR advice?", a: "This is a diagnostic logic framework. It is not legal or HR advice. It is a mental model for personal strategic planning." },
+    { q: "Is it a recurring subscription?", a: "Absolutely not. This is a one-time $7 payment for lifetime access to the PDF manual and any future 2026 edition updates." },
+    { q: "Is this legal or HR advice?", a: "This is a diagnostic logic framework, a mental model for personal strategic planning. It is not legal or HR advice." },
   ];
 
   return (
