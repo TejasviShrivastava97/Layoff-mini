@@ -6,10 +6,10 @@ interface SuccessPageProps {
 }
 
 const SuccessPage: React.FC<SuccessPageProps> = ({ setView }) => {
-  const handleDownload = () => {
-    // In a production environment, this would link to the actual generated PDF or a secure signed S3 URL.
-    alert("Starting secure download of 'Replaceability-Scorecard-2026.pdf'...");
-  };
+  // The file path relative to the domain root
+  // This file MUST be placed in your project's /public folder
+  const fileUrl = '/The-Replaceability-Scorecard-2026.pdf';
+  const fileName = 'The-Replaceability-Scorecard-2026.pdf';
 
   return (
     <div className="pt-32 pb-32 px-6 flex items-center justify-center min-h-[80vh]">
@@ -62,18 +62,19 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ setView }) => {
                 </div>
               </div>
 
-              <h2 className="text-2xl font-serif font-bold text-slate-950 mb-2">The Replaceability scorecard PDF</h2>
+              <h2 className="text-2xl font-serif font-bold text-slate-950 mb-2">The Replaceability Scorecard PDF</h2>
               <p className="text-sm text-slate-500 mb-8 font-medium">Version 4.2 • 2.4 MB • Secure Digital Document</p>
               
-              <button 
-                onClick={handleDownload}
-                className="w-full py-5 bg-red-600 text-white font-black text-xl rounded-2xl transition-all hover:bg-red-700 hover:scale-[1.02] active:scale-95 shadow-xl shadow-red-600/20 flex items-center justify-center gap-3"
+              <a 
+                href={fileUrl}
+                download={fileName}
+                className="w-full py-5 bg-red-600 text-white font-black text-xl rounded-2xl transition-all hover:bg-red-700 hover:scale-[1.02] active:scale-95 shadow-xl shadow-red-600/20 flex items-center justify-center gap-3 group no-underline"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
                 Download Scorecard Now
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -87,7 +88,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ setView }) => {
               </svg>
             </div>
             <p className="text-slate-600 font-medium leading-relaxed">
-              A backup copy and receipt have been sent to your email. If you have any issues with the direct download above, please check your inbox for a message from <span className="text-slate-950 font-bold">Elemental Ventures</span>.
+              A backup copy and receipt have been sent to your email. If the button above doesn't trigger your download, please check your inbox for a message from <span className="text-slate-950 font-bold">Elemental Ventures</span>.
             </p>
           </div>
         </div>
