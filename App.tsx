@@ -10,11 +10,12 @@ import Navigation from './components/Navigation';
 import TermsOfService from './components/TermsOfService';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import CustomerSupport from './components/CustomerSupport';
+import SuccessPage from './components/SuccessPage';
 
 // CENTRALIZED STRIPE CHECKOUT LINK
 export const CHECKOUT_URL = "https://buy.stripe.com/28E4gyaxr2R92qX1M9dAk02";
 
-export type ViewState = 'home' | 'terms' | 'privacy' | 'support';
+export type ViewState = 'home' | 'terms' | 'privacy' | 'support' | 'success';
 
 const ScoreInterpretation: React.FC = () => {
   const ranges = [
@@ -62,6 +63,15 @@ const App: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+
+    // Auto-detect success redirect from Stripe
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      setView('success');
+      // Clean up URL without refreshing
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -131,6 +141,7 @@ const App: React.FC = () => {
         {view === 'terms' && <TermsOfService />}
         {view === 'privacy' && <PrivacyPolicy />}
         {view === 'support' && <CustomerSupport />}
+        {view === 'success' && <SuccessPage setView={navigateTo} />}
       </main>
 
       <Footer setView={navigateTo} />

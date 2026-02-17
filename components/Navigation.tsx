@@ -26,7 +26,6 @@ const Navigation: React.FC<NavigationProps> = ({ scrolled, setView }) => {
         <div className="flex items-center gap-6 sm:gap-10">
           <div className="hidden md:flex items-center gap-8">
             <button onClick={() => setView('home')} className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-red-600 transition-colors">Home</button>
-            <a href="/#about" onClick={() => setView('home')} className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-red-600 transition-colors">The Process</a>
             <button onClick={() => setView('support')} className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-red-600 transition-colors">Support</button>
           </div>
           <a 

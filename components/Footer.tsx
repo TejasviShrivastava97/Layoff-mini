@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ViewState } from '../App';
 
@@ -16,7 +15,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
             <span className="font-serif font-black text-slate-950 uppercase tracking-tighter">Scorecard</span>
           </div>
           
-          <div className="flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.2em]">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-[11px] font-black uppercase tracking-[0.2em]">
             <button onClick={() => setView('home')} className="hover:text-red-700 transition-colors">Home</button>
             <button onClick={() => setView('terms')} className="hover:text-red-700 transition-colors">Terms</button>
             <button onClick={() => setView('privacy')} className="hover:text-red-700 transition-colors">Privacy</button>
