@@ -25,6 +25,12 @@ const ScoreInterpretation: React.FC = () => {
     { range: "Below 10", title: "Highly Transferable", color: "bg-red-600", desc: "Your role may currently be defined more by tasks than by organizational dependency. This is a signal to reposition intentionally." }
   ];
 
+  const path = window.location.pathname;
+
+if (path === "/success") {
+  return <SuccessPage />;
+}
+
   return (
     <section className="py-24 bg-[#0a0a0a] text-white overflow-hidden">
       <div className="container mx-auto px-6 max-w-6xl">
