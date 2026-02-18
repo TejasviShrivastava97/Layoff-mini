@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Hero from './components/Hero';
 import OpeningSection from './components/OpeningSection';
 import WhatYouGet from './components/WhatYouGet';
@@ -17,6 +17,15 @@ export const CHECKOUT_URL = "https://buy.stripe.com/28E4gyaxr2R92qX1M9dAk02";
 
 export type ViewState = 'home' | 'terms' | 'privacy' | 'support' | 'success';
 
+// Simple mapping of paths to views
+const PATH_MAP: Record<string, ViewState> = {
+  '/': 'home',
+  '/success': 'success',
+  '/terms': 'terms',
+  '/privacy': 'privacy',
+  '/support': 'support'
+};
+
 const ScoreInterpretation: React.FC = () => {
   const ranges = [
     { range: "24-30", title: "Structurally Embedded", color: "bg-emerald-600", desc: "Your role is integrated into operations in a way that requires deliberate planning to alter. You hold meaningful institutional dependency." },
@@ -24,12 +33,6 @@ const ScoreInterpretation: React.FC = () => {
     { range: "10-16", title: "Functionally Replaceable", color: "bg-orange-500", desc: "Your responsibilities may be important, yet structurally easy to redistribute. This is the most common range, and where improvement is possible." },
     { range: "Below 10", title: "Highly Transferable", color: "bg-red-600", desc: "Your role may currently be defined more by tasks than by organizational dependency. This is a signal to reposition intentionally." }
   ];
-
-  const path = window.location.pathname;
-
-if (path === "/success") {
-  return <SuccessPage />;
-}
 
   return (
     <section className="py-24 bg-[#0a0a0a] text-white overflow-hidden">
@@ -65,26 +68,62 @@ const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [view, setView] = useState<ViewState>('home');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+  // Sync state with URL path
+  const syncViewWithLocation = useCallback(() => {
+    const path = window.location.pathname;
+    const matchedView = PATH_MAP[path] || 'home';
+    setView(matchedView);
 
-    // Auto-detect success redirect from Stripe
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-      setView('success');
-      // Clean up URL without refreshing
-      window.history.replaceState({}, document.title, window.location.pathname);
+    // Fire Pixel if we are on the success page
+    if (matchedView === 'success') {
+      try {
+        const win = window as any;
+        if (typeof win.fbq === 'function') {
+          win.fbq('track', 'Purchase', {
+            value: 7.00,
+            currency: 'USD',
+            content_name: 'The Replaceability Scorecard',
+            content_type: 'product'
+          });
+        }
+        if (typeof win.gtag === 'function') {
+          win.gtag('event', 'purchase', {
+            transaction_id: 'stripe_' + Date.now(),
+            value: 7.00,
+            currency: 'USD',
+            items: [{ item_id: 'scorecard_2026', item_name: 'The Replaceability Scorecard' }]
+          });
+        }
+      } catch (e) {
+        console.error("Tracking error:", e);
+      }
     }
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Initial sync
+    syncViewWithLocation();
+
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handlePopState = () => syncViewWithLocation();
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('popstate', handlePopState);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [syncViewWithLocation]);
+
   const navigateTo = (newView: ViewState) => {
+    const path = Object.keys(PATH_MAP).find(key => PATH_MAP[key] === newView) || '/';
+    window.history.pushState({}, '', path);
     setView(newView);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Manually trigger sync for pixel if navigating forward to success
+    if (newView === 'success') syncViewWithLocation();
   };
 
   return (
