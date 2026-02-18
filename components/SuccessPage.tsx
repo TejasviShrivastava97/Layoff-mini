@@ -1,6 +1,5 @@
 import React from 'react';
 import { ViewState } from '../App';
-import { useEffect } from "react";
 
 
 interface SuccessPageProps {
@@ -8,17 +7,6 @@ interface SuccessPageProps {
 }
 
 const SuccessPage: React.FC<SuccessPageProps> = ({ setView }) => {
-    useEffect(() => {
-    // Fire Meta Purchase Event when success page loads
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq('track', 'Purchase', {
-        value: 7.00,
-        currency: 'USD',
-        content_name: 'Replaceability Scorecard',
-        content_type: 'product'
-      });
-    }
-  }, []);
 
   // The file path relative to the domain root
   // This file MUST be placed in your project's /public folder
