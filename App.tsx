@@ -74,30 +74,6 @@ const App: React.FC = () => {
     const matchedView = PATH_MAP[path] || 'home';
     setView(matchedView);
 
-    // Fire Pixel if we are on the success page
-    if (matchedView === 'success') {
-      try {
-        const win = window as any;
-        if (typeof win.fbq === 'function') {
-          win.fbq('track', 'Purchase', {
-            value: 7.00,
-            currency: 'USD',
-            content_name: 'The Replaceability Scorecard',
-            content_type: 'product'
-          });
-        }
-        if (typeof win.gtag === 'function') {
-          win.gtag('event', 'purchase', {
-            transaction_id: 'stripe_' + Date.now(),
-            value: 7.00,
-            currency: 'USD',
-            items: [{ item_id: 'scorecard_2026', item_name: 'The Replaceability Scorecard' }]
-          });
-        }
-      } catch (e) {
-        console.error("Tracking error:", e);
-      }
-    }
   }, []);
 
   useEffect(() => {
@@ -122,8 +98,8 @@ const App: React.FC = () => {
     setView(newView);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Manually trigger sync for pixel if navigating forward to success
-    if (newView === 'success') syncViewWithLocation();
+    
+    
   };
 
   return (
