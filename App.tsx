@@ -13,7 +13,7 @@ import SuccessPage from './components/SuccessPage';
 import QuizSection from './components/QuizSection';
 
 // Playbook upsell checkout link
-export const PLAYBOOK_URL = "https://buy.stripe.com/28E4gyaxr2R92qX1M9dAk02";
+export const PLAYBOOK_URL = "https://buy.stripe.com/6oUgZggVP8bt8PlaiFdAk03";
 
 export type ViewState = 'home' | 'terms' | 'privacy' | 'support' | 'success';
 
