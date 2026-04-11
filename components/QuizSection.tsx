@@ -49,7 +49,6 @@ const QUESTIONS = [
 const getResult = (score: number) => {
   if (score >= 24) return {
     label: "Structurally Embedded",
-    color: "emerald",
     colorClass: "bg-emerald-600",
     textClass: "text-emerald-600",
     borderClass: "border-emerald-200",
@@ -59,7 +58,6 @@ const getResult = (score: number) => {
   };
   if (score >= 17) return {
     label: "Moderately Anchored",
-    color: "blue",
     colorClass: "bg-blue-600",
     textClass: "text-blue-600",
     borderClass: "border-blue-200",
@@ -69,7 +67,6 @@ const getResult = (score: number) => {
   };
   if (score >= 10) return {
     label: "Functionally Replaceable",
-    color: "orange",
     colorClass: "bg-orange-500",
     textClass: "text-orange-600",
     borderClass: "border-orange-200",
@@ -79,7 +76,6 @@ const getResult = (score: number) => {
   };
   return {
     label: "Highly Transferable",
-    color: "red",
     colorClass: "bg-red-600",
     textClass: "text-red-600",
     borderClass: "border-red-200",
@@ -103,7 +99,7 @@ const QuizSection: React.FC = () => {
 
   const totalScore = scores.reduce((a, b) => a + b, 0);
   const result = getResult(totalScore);
-  const progress = ((current) / QUESTIONS.length) * 100;
+  const progress = (current / QUESTIONS.length) * 100;
 
   const handleSelect = (val: number) => setSelected(val);
 
@@ -126,8 +122,23 @@ const QuizSection: React.FC = () => {
     }
     setEmailError('');
     setSubmitting(true);
-    // Small delay to simulate submission feel
-    await new Promise(r => setTimeout(r, 800));
+
+    try {
+      await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          name,
+          score: totalScore,
+          scoreLabel: getResult(totalScore).label
+        })
+      });
+    } catch (e) {
+      // Silently fail -- don't block user from seeing results
+      console.error('Mailchimp subscribe error:', e);
+    }
+
     setSubmitting(false);
     setStep('results');
   };
@@ -150,14 +161,9 @@ const QuizSection: React.FC = () => {
         {/* QUIZ STEP */}
         {step === 'quiz' && (
           <div className="bg-white rounded-[3rem] border border-slate-200 shadow-sm overflow-hidden">
-            {/* Progress bar */}
             <div className="h-1.5 bg-slate-100">
-              <div
-                className="h-full bg-red-600 transition-all duration-500"
-                style={{ width: `${progress}%` }}
-              />
+              <div className="h-full bg-red-600 transition-all duration-500" style={{ width: `${progress}%` }} />
             </div>
-
             <div className="p-10 md:p-14">
               <div className="flex items-center justify-between mb-8">
                 <span className="text-[10px] font-black text-red-600 uppercase tracking-widest">
@@ -172,7 +178,6 @@ const QuizSection: React.FC = () => {
                 {q.question}
               </h3>
 
-              {/* Score buttons 1-5 */}
               <div className="space-y-4 mb-10">
                 {[1, 2, 3, 4, 5].map((val) => (
                   <button
@@ -275,14 +280,9 @@ const QuizSection: React.FC = () => {
         {/* RESULTS STEP */}
         {step === 'results' && (
           <div className="space-y-6">
-            {/* Score card */}
             <div className={`bg-white rounded-[3rem] border-2 ${result.borderClass} shadow-sm p-10 md:p-14`}>
               <div className="text-center mb-10">
-                {name && (
-                  <p className="text-slate-500 font-bold mb-2">
-                    {name}, here are your results
-                  </p>
-                )}
+                {name && <p className="text-slate-500 font-bold mb-2">{name}, here are your results</p>}
                 <div className={`inline-flex items-center gap-3 px-6 py-3 ${result.bgClass} ${result.textClass} rounded-full font-black text-sm uppercase tracking-widest mb-6`}>
                   {result.label}
                 </div>
@@ -290,12 +290,9 @@ const QuizSection: React.FC = () => {
                   <span className="text-7xl md:text-8xl font-serif font-black text-slate-950">{totalScore}</span>
                   <span className="text-2xl font-bold text-slate-300 mt-4">/ 30</span>
                 </div>
-                <p className="text-slate-600 font-medium text-lg max-w-xl mx-auto leading-relaxed">
-                  {result.desc}
-                </p>
+                <p className="text-slate-600 font-medium text-lg max-w-xl mx-auto leading-relaxed">{result.desc}</p>
               </div>
 
-              {/* Per-dimension breakdown */}
               <div className="space-y-3 mb-10">
                 {QUESTIONS.map((q, i) => (
                   <div key={i} className="flex items-center gap-4">
@@ -312,7 +309,7 @@ const QuizSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Upsell block */}
+            {/* Upsell */}
             <div className="bg-slate-950 rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 blur-[80px] pointer-events-none"></div>
               <div className="relative z-10">
@@ -325,7 +322,6 @@ const QuizSection: React.FC = () => {
                 <p className="text-slate-400 font-medium text-lg mb-8 max-w-xl leading-relaxed">
                   {result.upsell}
                 </p>
-
                 <div className="space-y-3 mb-10">
                   {[
                     "90-Day Anti-Layoff Action Plan",
@@ -344,7 +340,6 @@ const QuizSection: React.FC = () => {
                     </div>
                   ))}
                 </div>
-
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                   <a
                     href={PLAYBOOK_URL}
