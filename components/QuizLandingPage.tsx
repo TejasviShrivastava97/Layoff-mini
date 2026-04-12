@@ -32,8 +32,8 @@ const QuizLandingPage: React.FC = () => {
         </p>
       </div>
 
-      {/* Quiz -- full component, no padding adjustments needed */}
-      <div className="-mt-8">
+      {/* Quiz -- full component */}
+      <div>
         <QuizSection />
       </div>
 

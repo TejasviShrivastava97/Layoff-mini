@@ -102,7 +102,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <Navigation scrolled={scrolled} setView={navigateTo} />
+      {view !== 'quiz' && <Navigation scrolled={scrolled} setView={navigateTo} />}
 
       <main className="relative z-10">
         {view === 'home' && (
@@ -153,7 +153,7 @@ const App: React.FC = () => {
         {view === 'quiz' && <QuizLandingPage />}
       </main>
 
-      <Footer setView={navigateTo} />
+      {view !== 'quiz' && <Footer setView={navigateTo} />}
     </div>
   );
 };
