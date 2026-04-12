@@ -139,6 +139,15 @@ const QuizSection: React.FC = () => {
       console.error('Mailchimp subscribe error:', e);
     }
 
+    // Fire Meta Lead event
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead', {
+        content_name: 'Replaceability Scorecard',
+        value: 0,
+        currency: 'USD'
+      });
+    }
+
     setSubmitting(false);
     setStep('results');
   };
@@ -345,6 +354,15 @@ const QuizSection: React.FC = () => {
                     href={PLAYBOOK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && (window as any).fbq) {
+                        (window as any).fbq('track', 'InitiateCheckout', {
+                          content_name: 'Layoff-Proof Playbook',
+                          value: 27,
+                          currency: 'USD'
+                        });
+                      }
+                    }}
                     className="inline-flex items-center gap-3 px-10 py-5 bg-red-600 text-white font-black text-xl rounded-2xl hover:bg-red-500 hover:scale-[1.03] active:scale-95 transition-all shadow-2xl shadow-red-900/30"
                   >
                     Get The Playbook — $27
