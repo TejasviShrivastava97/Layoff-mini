@@ -11,18 +11,20 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import CustomerSupport from './components/CustomerSupport';
 import SuccessPage from './components/SuccessPage';
 import QuizSection from './components/QuizSection';
+import QuizLandingPage from './components/QuizLandingPage';
 
 // Playbook upsell checkout link
 export const PLAYBOOK_URL = "https://buy.stripe.com/6oUfZggVP8bt8PlaiFdAk03";
 
-export type ViewState = 'home' | 'terms' | 'privacy' | 'support' | 'success';
+export type ViewState = 'home' | 'terms' | 'privacy' | 'support' | 'success' | 'quiz';
 
 const PATH_MAP: Record<string, ViewState> = {
   '/': 'home',
   '/success': 'success',
   '/terms': 'terms',
   '/privacy': 'privacy',
-  '/support': 'support'
+  '/support': 'support',
+  '/quiz': 'quiz'
 };
 
 const ScoreInterpretation: React.FC = () => {
@@ -148,6 +150,7 @@ const App: React.FC = () => {
         {view === 'privacy' && <PrivacyPolicy />}
         {view === 'support' && <CustomerSupport />}
         {view === 'success' && <SuccessPage setView={navigateTo} />}
+        {view === 'quiz' && <QuizLandingPage />}
       </main>
 
       <Footer setView={navigateTo} />
