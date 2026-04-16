@@ -375,8 +375,8 @@ const QuizSection: React.FC = () => {
         {/* EMAIL CAPTURE STEP */}
         {step === 'email' && (
           <div className="bg-white rounded-[3rem] border border-slate-200 shadow-sm p-10 md:p-14 text-center">
-            <div className="w-16 h-16 bg-red-50 rounded-[1.5rem] flex items-center justify-center mx-auto mb-8">
-              <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-16 h-16 bg-emerald-50 rounded-[1.5rem] flex items-center justify-center mx-auto mb-8">
+              <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
@@ -390,12 +390,12 @@ const QuizSection: React.FC = () => {
 
             <div className="space-y-4 max-w-md mx-auto text-left">
               <div>
-                <label className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-2">First Name</label>
+                <label className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-2">Full Name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  placeholder="Your first name"
+                  placeholder="Your full name"
                   className="w-full px-5 py-4 rounded-2xl border border-slate-200 bg-slate-50 text-slate-950 font-medium focus:outline-none focus:border-slate-950 transition-colors text-base"
                 />
               </div>
