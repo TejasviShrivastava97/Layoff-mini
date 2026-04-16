@@ -139,14 +139,17 @@ const QuizSection: React.FC = () => {
       console.error('Mailchimp subscribe error:', e);
     }
 
-    // Fire Meta Lead event
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Lead', {
-        content_name: 'Replaceability Scorecard',
-        value: 0,
-        currency: 'USD'
-      });
-    }
+// Fire Meta Lead event
+const fireLeadEvent = () => {
+  if (typeof window !== 'undefined' && (window as any).fbq) {
+    (window as any).fbq('track', 'Lead', {
+      content_name: 'Replaceability Scorecard',
+      value: 0,
+      currency: 'USD'
+    });
+  }
+};
+setTimeout(fireLeadEvent, 500);
 
     setSubmitting(false);
     setStep('results');
