@@ -28,34 +28,28 @@ const PATH_MAP: Record<string, ViewState> = {
 };
 
 const ScoreInterpretation: React.FC = () => {
-  const ranges = [
-    { range: "24-30", title: "Structurally Embedded", color: "bg-emerald-600", desc: "Your role is integrated into operations in a way that requires deliberate planning to alter. You hold meaningful institutional dependency." },
-    { range: "17-23", title: "Moderately Anchored", color: "bg-blue-600", desc: "Your role provides clear value, but certain elements may be transferable without major disruption. Specific areas worth strengthening." },
-    { range: "10-16", title: "Functionally Replaceable", color: "bg-orange-500", desc: "Your responsibilities may be important, yet structurally easy to redistribute. This is the most common range, and where improvement is possible." },
-    { range: "Below 10", title: "Highly Transferable", color: "bg-red-600", desc: "Your role may currently be defined more by tasks than by organizational dependency. This is a signal to reposition intentionally." }
+  const tiers = [
+    { range: "34–40", tier: "Tier 1", title: "Structurally Embedded", badgeClass: "bg-emerald-100 text-emerald-800", desc: "Your role is genuinely hard to remove. You hold institutional knowledge, cross-functional dependency, and leadership visibility. The risk: complacency. One reorg can change everything if you stop protecting your position." },
+    { range: "25–33", tier: "Tier 2", title: "Moderately Anchored", badgeClass: "bg-blue-100 text-blue-800", desc: "You have real value and some visibility — but specific gaps exist. This is the most dangerous tier: safe enough to feel comfortable, exposed enough to be cut when budgets tighten. Most people here assume they're fine." },
+    { range: "15–24", tier: "Tier 3", title: "Functionally Replaceable", badgeClass: "bg-orange-100 text-orange-800", desc: "Your role exists on paper. Your value to leadership doesn't — not yet. You're doing the work, but the structural factors that protect a role during restructuring aren't in place. This is the most common result." },
+    { range: "Below 15", tier: "Tier 4", title: "Highly Exposed", badgeClass: "bg-red-100 text-red-800", desc: "Your role is defined by tasks, not by value. Working harder won't fix this — intentional repositioning will. This is the tier that sees the most dramatic improvement with the right framework." }
   ];
 
   return (
-    <section className="py-24 bg-[#0a0a0a] text-white overflow-hidden">
-      <div className="container mx-auto px-6 max-w-6xl">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-          <div className="max-w-2xl">
-            <span className="text-red-500 font-black text-[10px] uppercase tracking-[0.3em]">The Outcome</span>
-            <h2 className="text-4xl md:text-6xl font-serif font-bold mt-4 leading-tight">Interpreting Your Score</h2>
-            <p className="text-slate-400 mt-6 text-lg">
-              This scorecard doesn't measure performance, it measures <strong>positioning</strong>.
-              Clarity on where you stand is the first step toward intentional change.
-            </p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {ranges.map((r, i) => (
-            <div key={i} className="p-8 bg-white/5 border border-white/10 rounded-[2.5rem] hover:bg-white/10 transition-all group">
-              <div className="flex items-center gap-6 mb-6">
-                <div className={`px-4 py-2 ${r.color} text-white font-black text-sm rounded-xl`}>{r.range}</div>
-                <h3 className="text-xl font-serif font-bold">{r.title}</h3>
+    <section className="py-20 bg-[#fdfcfb]">
+      <div className="max-w-6xl mx-auto px-6">
+        <p className="text-red-600 font-black text-[10px] uppercase tracking-[0.3em] mb-4">Your Score Ranges</p>
+        <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-950 mb-3">What your score actually means</h2>
+        <p className="text-slate-500 text-base mb-12 max-w-xl">This scorecard doesn't measure performance — it measures <strong>positioning</strong>. Where you land determines what you need to do next.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {tiers.map((t, i) => (
+            <div key={i} className="p-7 border border-slate-200 rounded-2xl bg-white">
+              <div className="flex items-center gap-3 mb-4">
+                <span className={`text-xs font-black uppercase px-3 py-1 rounded-lg ${t.badgeClass}`}>{t.range}</span>
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{t.tier}</span>
               </div>
-              <p className="text-slate-400 font-medium leading-relaxed">{r.desc}</p>
+              <h3 className="font-serif text-xl font-bold text-slate-950 mb-2">{t.title}</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">{t.desc}</p>
             </div>
           ))}
         </div>

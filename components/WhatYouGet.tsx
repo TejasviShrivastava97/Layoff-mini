@@ -1,80 +1,68 @@
 import React from 'react';
+import { PLAYBOOK_URL } from '../App';
 
 const WhatYouGet: React.FC = () => {
-  const items = [
-    { 
-      title: "The Core Scorecard", 
-      desc: "A 6-dimension weighted assessment used to audit your structural necessity.", 
-      size: "md:col-span-2",
-      tag: "CORE TOOL"
-    },
-    { 
-      title: "Interpretive Logic", 
-      desc: "Detailed breakdowns of each scoring range and what they mean for your career path.", 
-      size: "md:col-span-1",
-      tag: "ANALYSIS"
-    },
-    { 
-      title: "Tactical Positioning", 
-      desc: "Practical steps to shift from 'Tasks' to 'Outcomes' in the eyes of decision-makers.", 
-      size: "md:col-span-1",
-      tag: "GUIDE"
-    },
-    { 
-      title: "Resilience Checklist", 
-      desc: "Specific structural changes to implement over 60-90 days to reduce replaceability.", 
-      size: "md:col-span-2",
-      tag: "STRATEGY"
-    },
-  ];
-
   return (
-    <section className="py-24 md:py-32 bg-slate-50">
-      <div className="container mx-auto px-6 max-w-6xl">
-        <div className="mb-20">
-          <span className="text-red-600 font-black text-[10px] uppercase tracking-[0.3em]">Contents</span>
-          <h2 className="text-4xl md:text-6xl font-serif font-bold text-slate-950 mt-4 tracking-tight">What You Receive</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {items.map((item, idx) => (
-            <div key={idx} className={`${item.size} group p-10 bg-white rounded-[3rem] border border-slate-200/50 hover:shadow-2xl hover:shadow-red-900/5 transition-all duration-500 flex flex-col justify-between`}>
-              <div>
-                <span className="inline-block px-3 py-1 bg-slate-50 text-slate-400 text-[9px] font-black tracking-widest rounded-full mb-8 group-hover:bg-red-50 group-hover:text-red-600 transition-colors">
-                  {item.tag}
-                </span>
-                <h3 className="text-2xl font-serif font-bold mb-4 text-slate-950">{item.title}</h3>
-                <p className="text-slate-500 leading-relaxed font-medium">{item.desc}</p>
-              </div>
-              <div className="mt-12 flex justify-end">
-                <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-300 group-hover:text-red-600 group-hover:border-red-100 transition-all">
-                  →
+    <section className="bg-[#0f0f0f] py-20 text-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <p className="text-red-500 font-black text-[10px] uppercase tracking-[0.3em] mb-4">The Playbook</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold leading-[1.1] mb-4">The Layoff-Proof Playbook</h2>
+            <p className="text-slate-400 text-base leading-relaxed mb-8">
+              Your score tells you where you stand. The playbook tells you exactly what to do about it — dimension by dimension, step by step, in 90 days.
+            </p>
+            <div className="flex flex-col gap-4">
+              {[
+                { title: '90-Day Anti-Layoff Action Plan', desc: 'A week-by-week roadmap to shift your positioning before the next restructuring cycle.' },
+                { title: 'Dimension-by-Dimension Repositioning Guide', desc: 'Exactly what to do for each of the 6 dimensions where you\'re exposed.' },
+                { title: 'Weekly Visibility Templates', desc: 'Copy-paste updates that make your value impossible for leadership to ignore.' },
+                { title: 'Manager Communication Scripts', desc: 'Word-for-word language to position yourself as essential without playing politics.' },
+                { title: 'Early Warning Signal Checklist', desc: '12 signs a restructuring is coming before anyone says a word.' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-white mb-0.5">{item.title}</p>
+                    <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="mt-16 bg-white border border-slate-200/80 rounded-[3rem] p-10 flex flex-col md:flex-row items-center justify-between gap-8 group">
-           <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-slate-950 rounded-[2rem] flex items-center justify-center text-white font-serif text-3xl font-bold italic rotate-[-5deg] group-hover:rotate-0 transition-transform">
-                RS
-              </div>
-              <div>
-                <p className="text-2xl font-serif font-bold text-slate-950">Instant Digital Delivery</p>
-                <p className="text-slate-500 font-medium text-sm md:text-base">Full 4-Page Structural Assessment Manual (PDF)</p>
-              </div>
-           </div>
-           <div className="flex items-center gap-4">
-              <div className="text-right hidden sm:block">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Updated</p>
-                <p className="text-sm font-bold text-slate-950">February 2026</p>
-              </div>
-              <div className="w-[1px] h-10 bg-slate-200 hidden sm:block"></div>
-              <span className="px-6 py-3 bg-red-600 text-white rounded-full font-bold text-sm shadow-lg shadow-red-200">
-                LATEST EDITION
-              </span>
-           </div>
+          {/* Buy card */}
+          <div className="bg-white/[0.04] border border-white/[0.08] rounded-3xl p-8">
+            <h3 className="font-serif text-2xl font-bold text-white mb-2">The Layoff-Proof Playbook</h3>
+            <div className="flex items-baseline gap-3 mb-6">
+              <span className="font-serif text-5xl font-black text-white">$27</span>
+              <span className="text-lg text-slate-500 line-through">$47</span>
+            </div>
+            <div className="flex flex-col gap-3 mb-6">
+              {['Instant PDF download','One-time payment — no subscription','14-day money-back guarantee','Works for any industry or role level'].map((f,i) => (
+                <div key={i} className="flex items-center gap-2.5 text-sm text-slate-400 font-medium">
+                  <svg className="w-3.5 h-3.5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"/></svg>
+                  {f}
+                </div>
+              ))}
+            </div>
+            <a
+              href={PLAYBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).fbq) {
+                  (window as any).fbq('track', 'InitiateCheckout', { content_name: 'Layoff-Proof Playbook', value: 27, currency: 'USD' });
+                }
+              }}
+              className="block w-full py-4 bg-red-600 text-white font-black text-base rounded-2xl hover:bg-red-500 hover:scale-[1.02] active:scale-95 transition-all text-center shadow-xl shadow-red-900/30"
+            >
+              Get The Playbook — $27 →
+            </a>
+            <p className="text-[10px] text-slate-600 text-center mt-3 uppercase tracking-widest font-bold">One-time payment · 14-day guarantee</p>
+          </div>
         </div>
       </div>
     </section>
