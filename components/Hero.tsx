@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   return (
     <>
       {/* Social proof strip — clean bar below nav */}
-      <div className="border-b border-slate-200 bg-[#f5f0eb] px-6 py-2">
+      <div className="border-b border-slate-200 bg-[#f5f0eb] px-6 py-3">
         <div className="max-w-6xl mx-auto flex items-center justify-center gap-3 flex-wrap">
           <span className="text-red-600 text-xs tracking-widest">★★★★★</span>
           <span className="text-xs font-semibold text-slate-700">4.9 rating</span>
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Hero */}
-      <section className="bg-[#fdfcfb] py-8 md:py-10 overflow-hidden">
+      <section className="bg-[#fdfcfb] py-6 md:py-8 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-start">
 
