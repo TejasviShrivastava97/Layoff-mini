@@ -104,7 +104,7 @@ const App: React.FC = () => {
 
       {view !== 'quiz' && <Navigation scrolled={scrolled} setView={navigateTo} />}
 
-      <main className="relative z-10 pt-[60px]">
+      <main className="relative z-10 pt-[68px]">
         {view === 'home' && (
           <>
             <Hero />

@@ -10,18 +10,6 @@ const Hero: React.FC = () => {
 
   return (
     <>
-      {/* Social proof strip — clean bar below nav */}
-      <div className="border-b border-slate-200 bg-[#f5f0eb] px-6 py-3">
-        <div className="max-w-6xl mx-auto flex items-center justify-center gap-3 flex-wrap">
-          <span className="text-red-600 text-xs tracking-widest">★★★★★</span>
-          <span className="text-xs font-semibold text-slate-700">4.9 rating</span>
-          <span className="text-slate-300 text-xs">·</span>
-          <span className="text-xs font-semibold text-slate-700">500+ professionals assessed</span>
-          <span className="text-slate-300 text-xs hidden md:inline">·</span>
-          <span className="text-xs text-slate-500 italic hidden md:inline">"Finally understood why I was at risk — before the reorg happened"</span>
-        </div>
-      </div>
-
       {/* Hero */}
       <section className="bg-[#fdfcfb] py-6 md:py-8 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
@@ -131,6 +119,16 @@ const Hero: React.FC = () => {
                   </div>
                   <span className="ml-auto text-red-500 text-[10px] tracking-widest">★★★★★</span>
                 </div>
+              </div>
+
+              {/* Social proof strip — bottom of hero */}
+              <div className="flex items-center justify-center gap-2 flex-wrap py-2.5 px-4 bg-[#f5f0eb] rounded-xl border border-slate-200 mb-3">
+                <span className="text-red-600 text-[10px] tracking-widest">★★★★★</span>
+                <span className="text-[10px] font-semibold text-slate-700">4.9 rating</span>
+                <span className="text-slate-300 text-xs">·</span>
+                <span className="text-[10px] font-semibold text-slate-700">500+ professionals assessed</span>
+                <span className="text-slate-300 text-xs hidden md:inline">·</span>
+                <span className="text-[10px] text-slate-500 italic hidden md:inline">"Finally understood why I was at risk"</span>
               </div>
 
               {/* Proof numbers */}
